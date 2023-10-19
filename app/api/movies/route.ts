@@ -8,7 +8,7 @@ const httpClient = axios.create({
     },
 });
 
-export async function getMovieById(id: string) {
+async function getMovieById(id: string) {
     const details = await httpClient.get(
         `https://api.themoviedb.org/3/movie/${id}`,
     );
@@ -31,7 +31,7 @@ export async function getMovieById(id: string) {
     );
 }
 
-export async function POST(req) {
+export async function POST(req: Request) {
     const genreId = 27;
 
     const { filters, movieId } = await req.json();
