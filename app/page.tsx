@@ -32,21 +32,15 @@ function Main() {
     return (
         <>
             <header
-                className="flex justify-center items-center h-16 bg-black text-orange-600 text-3xl font-bold uppercase"
+                className="flex items-center justify-center bg-black px-1 py-5 text-center text-3xl font-bold uppercase text-orange-600"
                 data-testid="header"
             >
                 {isFetching ? 'Let me think...' : 'My recommendation for you'}
             </header>
-            <main className="h-screen" style={{ paddingBottom: '132px' }}>
-                <section className="flex h-full">
-                    <Movie
-                        movie={data}
-                        isLoading={isFetching}
-                        isError={isError}
-                    />
-                </section>
+            <main className="relative h-full">
+                <Movie movie={data} isLoading={isFetching} isError={isError} />
             </main>
-            <aside className="fixed z-30 bottom-0 left-0 w-full">
+            <aside className="fixed bottom-0 left-0 z-30 w-full">
                 <ControlPanel
                     handleClick={handleClick}
                     isLoading={isFetching}
