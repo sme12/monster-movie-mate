@@ -2,6 +2,7 @@
 import { MovieModel } from '@/models/MovieModel';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
+import useMedia from '@/hooks/useMedia';
 import Loader from '@/components/Loader/Loader';
 
 export interface MovieProps {
@@ -105,11 +106,13 @@ const ImageBackdrop: React.FC<{ backdropPath: string }> = ({
 );
 
 const Movie: React.FC<MovieProps> = ({ isLoading, movie, isError }) => {
+    const isMd = useMedia('md');
+
     return (
         <>
             <div className="">
                 <div className="absolute z-10 h-full w-full bg-black opacity-60"></div>
-                {isLoading ? null : movie?.videoKey ? (
+                {isLoading ? null : movie?.videoKey && isMd ? (
                     <VideoBackdrop videoKey={movie.videoKey} />
                 ) : (
                     movie?.backdropPath && (
