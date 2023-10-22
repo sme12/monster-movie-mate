@@ -1,15 +1,60 @@
 'use client';
 import { MovieModel } from '@/models/MovieModel';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import useMedia from '@/hooks/useMedia';
 import Loader from '@/components/Loader/Loader';
+import useRating from '@/hooks/useRating';
+import { RatingModel, RatingSource } from '@/models/RatingModel';
 
 export interface MovieProps {
     movie: MovieModel | undefined;
     isLoading: boolean;
     isError: boolean;
 }
+
+const RaitingIMDB: React.FC<{ value: string; imdbURL: string }> = ({
+    value,
+    imdbURL,
+}) => {
+    return (
+        <a
+            href={imdbURL}
+            target="_blank"
+            className="text-xl underline hover:no-underline"
+        >
+            <b>IMDb: </b>
+            <span>{value}</span>
+        </a>
+    );
+};
+
+const Raitings: React.FC<{
+    ratings?: RatingModel[];
+    isLoading: boolean;
+    isError: boolean;
+    backupRating: number;
+    imdbURL: string;
+}> = ({ ratings, isLoading, isError, backupRating, imdbURL }) => {
+    return isLoading ? (
+        <p className="text-xl">Rating...</p>
+    ) : isError ? (
+        <p className="text-xl">Rating: {backupRating}</p>
+    ) : (
+        ratings &&
+        ratings.map((rating) => {
+            if (rating.source === RatingSource.IMDB) {
+                return (
+                    <RaitingIMDB
+                        key={rating.source}
+                        value={rating.value}
+                        imdbURL={imdbURL}
+                    />
+                );
+            }
+        })
+    );
+};
 
 const MovieData: React.FC<MovieProps> = ({ movie, isLoading, isError }) => {
     const [year, setYear] = useState<number | undefined>(undefined);
@@ -22,6 +67,16 @@ const MovieData: React.FC<MovieProps> = ({ movie, isLoading, isError }) => {
         }
     }, [movie]);
 
+    const {
+        isFetching: isRatingFetching,
+        data: ratings,
+        isError: isRatingError,
+    } = useRating(movie?.imdbId);
+
+    const imdbURL = useMemo(() => {
+        return movie?.imdbId && `https://www.imdb.com/title/${movie.imdbId}`;
+    }, [movie?.imdbId]);
+
     if (isLoading) {
         return <Loader />;
     } else if (movie) {
@@ -31,10 +86,7 @@ const MovieData: React.FC<MovieProps> = ({ movie, isLoading, isError }) => {
                     <a
                         className="block bg-white p-2"
                         target="_blank"
-                        href={
-                            movie.imdbId &&
-                            `https://www.imdb.com/title/${movie.imdbId}`
-                        }
+                        href={imdbURL}
                     >
                         {movie.posterPath && (
                             <Image
@@ -46,7 +98,7 @@ const MovieData: React.FC<MovieProps> = ({ movie, isLoading, isError }) => {
                         )}
                     </a>
                 </div>
-                <div className="flex grow flex-col gap-2 pb-5">
+                <div className="flex grow flex-col gap-3 pb-5">
                     <h2
                         className="md:text-left mb-2 text-center text-4xl font-bold"
                         data-testid="headline"
@@ -56,10 +108,13 @@ const MovieData: React.FC<MovieProps> = ({ movie, isLoading, isError }) => {
                     {movie.tagline && (
                         <p className="text-2xl">{movie.tagline}</p>
                     )}
-                    <p>
-                        {/* TODO: IMBD raiting instead of TMDB */}
-                        <b className="text-lg">Raiting:</b> {movie.voteAverage}
-                    </p>
+                    <Raitings
+                        ratings={ratings}
+                        isLoading={isRatingFetching}
+                        isError={isRatingError}
+                        backupRating={movie?.voteAverage}
+                        imdbURL={imdbURL ?? ''}
+                    />
                     {movie.overview && (
                         <p className="text-lg text-slate-200">
                             {movie.overview}

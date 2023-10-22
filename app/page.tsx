@@ -24,7 +24,7 @@ function Main() {
     useUpdateQuery(filters, data);
 
     const handleClick = (filters: Filters) => {
-        queryClient.invalidateQueries(); // Force invalidation to make sure data will refetch
+        queryClient.invalidateQueries({ queryKey: ['movie'] }); // Force invalidation to make sure data will refetch
         setIsNewSearch(true);
         setFilters({ ...filters });
     };
