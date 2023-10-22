@@ -46,7 +46,7 @@ const MovieData: React.FC<MovieProps> = ({ movie, isLoading, isError }) => {
                         )}
                     </a>
                 </div>
-                <div className="flex flex-col gap-2 pb-5">
+                <div className="flex grow flex-col gap-2 pb-5">
                     <h2
                         className="md:text-left mb-2 text-center text-4xl font-bold"
                         data-testid="headline"
