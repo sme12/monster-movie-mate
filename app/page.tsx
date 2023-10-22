@@ -32,7 +32,7 @@ function Main() {
     return (
         <>
             <header
-                className="flex items-center justify-center bg-black px-1 py-5 text-center text-3xl font-bold uppercase text-orange-600"
+                className="font-creepster flex items-center justify-center bg-slate-950 px-1 py-5 text-center text-4xl font-bold uppercase tracking-wider text-orange-600"
                 data-testid="header"
             >
                 {isFetching ? 'Let me think...' : 'My recommendation for you'}

@@ -10,7 +10,7 @@ const Button: React.FC<ButtonProps> = ({ onClick, text, pending }) => {
     return (
         <button
             onClick={onClick}
-            className="bg-orange-600 hover:bg-orange-700 text-white text-2xl font-bold py-4 px-8 rounded uppercase"
+            className="font-creepster rounded bg-orange-600 px-8 py-4 text-3xl font-bold uppercase tracking-wider text-white hover:bg-orange-700"
             disabled={pending}
         >
             {text}

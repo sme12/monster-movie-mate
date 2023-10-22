@@ -54,14 +54,16 @@ const MovieData: React.FC<MovieProps> = ({ movie, isLoading, isError }) => {
                         {movie.title} ({year})
                     </h2>
                     {movie.tagline && (
-                        <p className="text-xl">{movie.tagline}</p>
+                        <p className="text-2xl">{movie.tagline}</p>
                     )}
                     <p>
                         {/* TODO: IMBD raiting instead of TMDB */}
-                        <b>Raiting:</b> {movie.voteAverage}
+                        <b className="text-lg">Raiting:</b> {movie.voteAverage}
                     </p>
                     {movie.overview && (
-                        <p className="text-slate-300">{movie.overview}</p>
+                        <p className="text-lg text-slate-200">
+                            {movie.overview}
+                        </p>
                     )}
                 </div>
             </div>
@@ -111,7 +113,7 @@ const Movie: React.FC<MovieProps> = ({ isLoading, movie, isError }) => {
     return (
         <>
             <div className="">
-                <div className="absolute z-10 h-full w-full bg-black opacity-60"></div>
+                <div className="absolute z-10 h-full w-full bg-slate-950 opacity-60"></div>
                 {isLoading ? null : movie?.videoKey && isMd ? (
                     <VideoBackdrop videoKey={movie.videoKey} />
                 ) : (

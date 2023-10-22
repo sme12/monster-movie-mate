@@ -131,7 +131,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
     });
 
     return (
-        <div className="bg-black py-5">
+        <div className="bg-slate-950 py-5">
             <div className="container mx-auto max-w-[1200px]">
                 <div className="mb-3 flex items-center justify-center gap-3">
                     <Button
