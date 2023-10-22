@@ -8,7 +8,6 @@ export default async function fetchMovie(
     context?: any,
     signal?: AbortSignal,
 ): Promise<MovieModel> {
-    console.log('fetchMovie', context);
     try {
         const { data }: { data: MovieModel } = await axios.post(
             '/api/movies',

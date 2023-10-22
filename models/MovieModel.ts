@@ -9,4 +9,8 @@ export interface MovieModel {
     releaseDate: string;
     tagline: string;
     videoKey?: string;
+    keywords: {
+        id: number;
+        name: string;
+    }[];
 }

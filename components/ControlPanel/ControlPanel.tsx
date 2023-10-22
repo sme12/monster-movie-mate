@@ -126,8 +126,8 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
 
     const searchParams = useSearchParams();
     const [filters, setFilters] = useState({
-        rate: Number(searchParams.get('rate')) ?? Rate.Any,
-        period: Number(searchParams.get('period')) ?? Period.Any,
+        rate: Number(searchParams.get('rate') ?? Rate.Masterpiece),
+        period: Number(searchParams.get('period') ?? Period.Any),
     });
 
     const handleButtonClick = (filters: Filters) => {

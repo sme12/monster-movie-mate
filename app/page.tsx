@@ -14,8 +14,8 @@ const queryClient = new QueryClient();
 function Main() {
     const searchParams = useSearchParams();
     const [filters, setFilters] = useState({
-        rate: Number(searchParams.get('rate')) ?? Rate.Any,
-        period: Number(searchParams.get('period')) ?? Period.Any,
+        rate: Number(searchParams.get('rate') ?? Rate.Masterpiece),
+        period: Number(searchParams.get('period') ?? Period.Any),
     });
     const [isNewSearch, setIsNewSearch] = useState(false);
 

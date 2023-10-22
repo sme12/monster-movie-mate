@@ -65,6 +65,22 @@ const MovieData: React.FC<MovieProps> = ({ movie, isLoading, isError }) => {
                             {movie.overview}
                         </p>
                     )}
+                    <div>
+                        {movie.keywords && (
+                            <div className="mt-3 flex flex-row flex-wrap gap-2">
+                                {movie.keywords
+                                    .map((keyword, i) => (
+                                        <span
+                                            key={keyword.id}
+                                            className="rounded-md border border-slate-400 px-2 py-1 text-white"
+                                        >
+                                            {keyword.name}
+                                        </span>
+                                    ))
+                                    .slice(0, 13)}
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
         );

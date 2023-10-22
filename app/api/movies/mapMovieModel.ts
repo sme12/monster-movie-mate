@@ -17,5 +17,6 @@ export default function mapMovieModel(data: any): MovieModel {
                 video.type === 'Trailer' &&
                 video.official,
         )?.key,
+        keywords: data.keywords,
     };
 }

@@ -19,10 +19,17 @@ async function getMovieById(id: string) {
     );
     const videosData = videos.data;
 
+    const keywords = await httpClient.get(
+        `https://api.themoviedb.org/3/movie/${id}/keywords`,
+    );
+    const keywordsData = keywords.data;
+
     // TODO: Add error response
 
     return new Response(
-        JSON.stringify(mapMovieModel({ ...detailsData, ...videosData })),
+        JSON.stringify(
+            mapMovieModel({ ...detailsData, ...videosData, ...keywordsData }),
+        ),
         {
             status: 200,
             statusText: 'OK',
@@ -72,7 +79,7 @@ export async function POST(req: Request) {
             break;
     }
 
-    const url = `https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}&vote_average.gte=${voteInterval[0]}&vote_average.lte=${voteInterval[1]}&primary_release_date.gte=${yearInterval[0]}&primary_release_date.lte=${yearInterval[1]}&vote_count.gte=20`;
+    const url = `https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}&vote_average.gte=${voteInterval[0]}&vote_average.lte=${voteInterval[1]}&primary_release_date.gte=${yearInterval[0]}&primary_release_date.lte=${yearInterval[1]}&vote_count.gte=20&include_adult=false`;
     const firstResp = await httpClient.get(url);
     let firstData = firstResp.data;
     const pages = await firstData.total_pages;
