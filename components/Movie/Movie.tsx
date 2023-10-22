@@ -26,7 +26,7 @@ const MovieData: React.FC<MovieProps> = ({ movie, isLoading, isError }) => {
         return <Loader />;
     } else if (movie) {
         return (
-            <div className="md:flex-row flex flex-col gap-6 pb-[116px]">
+            <div className="md:flex-row flex flex-col gap-6 pb-[calc(68px+2rem)]">
                 <div className="mx-auto flex flex-shrink-0">
                     <a
                         className="block bg-white p-2"

@@ -130,12 +130,25 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
         period: Number(searchParams.get('period')) ?? Period.Any,
     });
 
+    const handleButtonClick = (filters: Filters) => {
+        handleClick(filters);
+        if (isFiltersOpen) {
+            setIsFiltersOpen(false);
+        }
+    };
+
     return (
-        <div className="bg-slate-950 py-5">
+        <div
+            className={`${
+                isFiltersOpen
+                    ? 'translate-y-0'
+                    : 'translate-y-[calc(100%-68px-2rem)]'
+            } bg-slate-950 py-5 transition-transform`}
+        >
             <div className="container mx-auto max-w-[1200px]">
                 <div className="mb-3 flex items-center justify-center gap-3">
                     <Button
-                        onClick={() => handleClick(filters)}
+                        onClick={() => handleButtonClick(filters)}
                         text="Try again!"
                         pending={isLoading}
                     ></Button>
@@ -147,12 +160,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                         {isFiltersOpen ? 'Hide filters' : 'Show filters'}
                     </button>
                 </div>
-                <div className={isFiltersOpen ? 'block' : 'hidden'}>
-                    <FiltersControls
-                        filters={filters}
-                        setFilters={setFilters}
-                    />
-                </div>
+                <FiltersControls filters={filters} setFilters={setFilters} />
             </div>
         </div>
     );
