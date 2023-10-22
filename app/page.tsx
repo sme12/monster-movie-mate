@@ -40,12 +40,7 @@ function Main() {
             <main className="relative h-full">
                 <Movie movie={data} isLoading={isFetching} isError={isError} />
             </main>
-            <aside className="fixed bottom-0 left-0 z-30 w-full">
-                <ControlPanel
-                    handleClick={handleClick}
-                    isLoading={isFetching}
-                />
-            </aside>
+            <ControlPanel handleClick={handleClick} isLoading={isFetching} />
         </>
     );
 }
