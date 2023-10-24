@@ -10,10 +10,10 @@ interface RadioProps {
 const Radio: React.FC<RadioProps> = ({ label, value, checked, onChange }) => {
     return (
         <label
-            className={`inline-flex cursor-pointer items-center justify-center rounded-full border border-gray-300 px-4 py-2 text-center text-sm font-medium text-white ${
+            className={`inline-flex cursor-pointer items-center justify-center rounded-full border border-white px-4 py-2 text-center text-sm font-medium  ${
                 checked
                     ? 'bg-white text-gray-900'
-                    : 'hover:bg-white hover:text-gray-900'
+                    : 'text-white hover:bg-white hover:text-gray-900'
             }`}
         >
             <input
