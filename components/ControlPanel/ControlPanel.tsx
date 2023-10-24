@@ -16,7 +16,7 @@ const FiltersControls: React.FC<FiltersControlsProps> = ({
     setFilters,
 }) => {
     return (
-        <div className="lg:justify-center xl:flex-row flex flex-col gap-8 px-5">
+        <div className="lg:justify-center xl:flex-row flex flex-col gap-8">
             <RadioGroup title="How old should it be?">
                 <Radio
                     label="Any"
@@ -142,20 +142,21 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
             className={`${
                 isFiltersOpen
                     ? 'translate-y-0'
-                    : 'translate-y-[calc(100%-68px-2rem)]'
-            } fixed bottom-0 left-0 z-30 w-full bg-slate-950 py-5 transition-transform`}
+                    : 'md:translate-y-[calc(100%-68px-2rem)] translate-y-[calc(100%-104px-2rem)]'
+            } md:py-5 fixed bottom-0 left-0 z-30 w-full bg-slate-950 pb-5 transition-transform`}
         >
-            <div className="container mx-auto max-w-[1200px]">
-                <div className="mb-3 flex items-center justify-center gap-3">
+            <div className="container mx-auto max-w-[1200px] px-5">
+                <div className="md:flex-row md:gap-3 mb-3 flex flex-col items-center justify-center">
                     <Button
                         onClick={() => handleButtonClick(filters)}
                         text="Try again!"
                         pending={isLoading}
+                        className="md:w-auto w-full"
                     ></Button>
                     <button
                         type="button"
                         onClick={() => setIsFiltersOpen(!isFiltersOpen)}
-                        className="appearance-none text-white underline hover:no-underline"
+                        className="md:order-1 md:w-auto -order-1 w-full appearance-none py-4 text-white underline hover:no-underline"
                     >
                         {isFiltersOpen ? 'Hide filters' : 'Show filters'}
                     </button>

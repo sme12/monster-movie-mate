@@ -49,7 +49,7 @@ export default function Home() {
     return (
         <QueryClientProvider client={queryClient}>
             <Main />
-            <ReactQueryDevtools initialIsOpen={false} />
+            {/* <ReactQueryDevtools initialIsOpen={false} /> */}
         </QueryClientProvider>
     );
 }
