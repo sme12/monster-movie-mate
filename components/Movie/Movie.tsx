@@ -1,6 +1,5 @@
 'use client';
 import { MovieModel } from '@/models/MovieModel';
-import Image from 'next/image';
 import { useState, useEffect, useMemo } from 'react';
 import useMedia from '@/hooks/useMedia';
 import Loader from '@/components/Loader/Loader';
@@ -89,12 +88,14 @@ const MovieData: React.FC<MovieProps> = ({ movie, isLoading, isError }) => {
                         href={imdbURL}
                     >
                         {movie.posterPath && (
-                            <Image
-                                src={`https://image.tmdb.org/t/p/w300${movie.posterPath}`}
-                                alt={movie.title}
-                                width={250}
-                                height={400}
-                            />
+                            <picture>
+                                <img
+                                    srcSet={`https://image.tmdb.org/t/p/w300${movie.posterPath}, https://image.tmdb.org/t/p/w780${movie.posterPath} 2x`}
+                                    alt={movie.title}
+                                    width={250}
+                                    height={400}
+                                />
+                            </picture>
                         )}
                     </a>
                 </div>
@@ -167,14 +168,13 @@ const ImageBackdrop: React.FC<{ backdropPath: string }> = ({
     backdropPath,
 }) => (
     <div className="h-full w-full" data-testid="image-backdrop">
-        <Image
-            className="object-cover"
-            src={`https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${backdropPath}`}
-            alt="Movie poster"
-            quality={100}
-            fill
-            sizes="100vw"
-        />
+        <picture>
+            <img
+                className="absolute left-0 top-0 h-full w-full object-cover object-center"
+                src={`https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${backdropPath}`}
+                alt="Movie poster"
+            />
+        </picture>
     </div>
 );
 
