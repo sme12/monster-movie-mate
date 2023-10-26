@@ -13,6 +13,7 @@ const props: MovieProps = {
         backdropPath: 'test.jpg',
         imdbId: 'test',
         voteAverage: 10,
+        keywords: [],
     },
     isLoading: false,
     isError: false,

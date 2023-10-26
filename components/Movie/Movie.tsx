@@ -20,10 +20,9 @@ const RaitingIMDB: React.FC<{ value: string; imdbURL: string }> = ({
         <a
             href={imdbURL}
             target="_blank"
-            className="text-xl underline hover:no-underline"
+            className="inline-flex rounded-lg border border-white bg-white px-4 py-2 text-lg font-bold text-gray-900 hover:bg-transparent hover:text-white"
         >
-            <b>IMDb: </b>
-            <span>{value}</span>
+            <span>IMDb: {value}</span>
         </a>
     );
 };
@@ -81,12 +80,8 @@ const MovieData: React.FC<MovieProps> = ({ movie, isLoading, isError }) => {
     } else if (movie) {
         return (
             <div className="md:flex-row md:pb-[calc(68px+2rem)] flex flex-col gap-6 pb-[calc(104px+2rem)]">
-                <div className="mx-auto flex flex-shrink-0">
-                    <a
-                        className="block bg-white p-2"
-                        target="_blank"
-                        href={imdbURL}
-                    >
+                <div className="flex-inline mx-auto flex-shrink-0">
+                    <div className="bg-white p-2">
                         {movie.posterPath && (
                             <picture>
                                 <img
@@ -97,25 +92,29 @@ const MovieData: React.FC<MovieProps> = ({ movie, isLoading, isError }) => {
                                 />
                             </picture>
                         )}
-                    </a>
+                    </div>
                 </div>
                 <div className="flex grow flex-col gap-3 pb-5">
                     <h2
-                        className="md:text-left mb-2 text-center text-4xl font-bold"
+                        className="md:text-left text-center text-4xl font-bold"
                         data-testid="headline"
                     >
                         {movie.title} ({year})
                     </h2>
                     {movie.tagline && (
-                        <p className="text-2xl">{movie.tagline}</p>
+                        <p className="md:text-left text-center text-2xl">
+                            {movie.tagline}
+                        </p>
                     )}
-                    <Raitings
-                        ratings={ratings}
-                        isLoading={isRatingFetching}
-                        isError={isRatingError}
-                        backupRating={movie?.voteAverage}
-                        imdbURL={imdbURL ?? ''}
-                    />
+                    <div className="md:text-left mb-2 text-center">
+                        <Raitings
+                            ratings={ratings}
+                            isLoading={isRatingFetching}
+                            isError={isRatingError}
+                            backupRating={movie?.voteAverage}
+                            imdbURL={imdbURL ?? ''}
+                        />
+                    </div>
                     {movie.overview && (
                         <p className="text-lg text-slate-200">
                             {movie.overview}
@@ -184,7 +183,7 @@ const Movie: React.FC<MovieProps> = ({ isLoading, movie, isError }) => {
     return (
         <>
             <div className="">
-                <div className="absolute z-10 h-full w-full bg-slate-950 opacity-60"></div>
+                <div className="absolute z-10 h-full w-full bg-slate-950 opacity-80"></div>
                 {isLoading ? null : movie?.videoKey && isMd ? (
                     <VideoBackdrop videoKey={movie.videoKey} />
                 ) : (
