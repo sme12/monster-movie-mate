@@ -3,56 +3,13 @@ import { MovieModel } from '@/models/MovieModel';
 import { useState, useEffect, useMemo } from 'react';
 import useMedia from '@/hooks/useMedia';
 import Loader from '@/components/Loader/Loader';
-import useRating from '@/hooks/useRating';
-import { RatingModel, RatingSource } from '@/models/RatingModel';
+import Ratings from '@/components/Ratings/Ratings';
 
 export interface MovieProps {
     movie: MovieModel | undefined;
     isLoading: boolean;
     isError: boolean;
 }
-
-const RaitingIMDB: React.FC<{ value: string; imdbURL: string }> = ({
-    value,
-    imdbURL,
-}) => {
-    return (
-        <a
-            href={imdbURL}
-            target="_blank"
-            className="inline-flex rounded-lg border border-white bg-white px-4 py-2 text-lg font-bold text-gray-900 hover:bg-transparent hover:text-white"
-        >
-            <span>IMDb: {value}</span>
-        </a>
-    );
-};
-
-const Raitings: React.FC<{
-    ratings?: RatingModel[];
-    isLoading: boolean;
-    isError: boolean;
-    backupRating: number;
-    imdbURL: string;
-}> = ({ ratings, isLoading, isError, backupRating, imdbURL }) => {
-    return isLoading ? (
-        <p className="text-xl">Rating...</p>
-    ) : isError ? (
-        <p className="text-xl">Rating: {backupRating}</p>
-    ) : (
-        ratings &&
-        ratings.map((rating) => {
-            if (rating.source === RatingSource.IMDB) {
-                return (
-                    <RaitingIMDB
-                        key={rating.source}
-                        value={rating.value}
-                        imdbURL={imdbURL}
-                    />
-                );
-            }
-        })
-    );
-};
 
 const MovieData: React.FC<MovieProps> = ({ movie, isLoading, isError }) => {
     const [year, setYear] = useState<number | undefined>(undefined);
@@ -64,12 +21,6 @@ const MovieData: React.FC<MovieProps> = ({ movie, isLoading, isError }) => {
             setYear(undefined);
         }
     }, [movie]);
-
-    const {
-        isFetching: isRatingFetching,
-        data: ratings,
-        isError: isRatingError,
-    } = useRating(movie?.imdbId);
 
     const imdbURL = useMemo(() => {
         return movie?.imdbId && `https://www.imdb.com/title/${movie.imdbId}`;
@@ -107,13 +58,13 @@ const MovieData: React.FC<MovieProps> = ({ movie, isLoading, isError }) => {
                         </p>
                     )}
                     <div className="md:text-left mb-2 text-center">
-                        <Raitings
-                            ratings={ratings}
-                            isLoading={isRatingFetching}
-                            isError={isRatingError}
-                            backupRating={movie?.voteAverage}
-                            imdbURL={imdbURL ?? ''}
-                        />
+                        {movie?.imdbId && (
+                            <Ratings
+                                backupRating={movie?.voteAverage}
+                                imdbURL={imdbURL ?? ''}
+                                imdbId={movie?.imdbId}
+                            />
+                        )}
                     </div>
                     {movie.overview && (
                         <p className="text-lg text-slate-200">
