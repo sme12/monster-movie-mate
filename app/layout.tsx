@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Petrona, Creepster } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/react';
 
 const petrona = Petrona({ subsets: ['latin'] });
 
@@ -30,6 +31,7 @@ export default function RootLayout({
             <body className={`${petrona.className} ${creepster.variable}`}>
                 <div className="md:h-screen grid grid-rows-[min-content]">
                     {children}
+                    <Analytics />
                 </div>
             </body>
         </html>
