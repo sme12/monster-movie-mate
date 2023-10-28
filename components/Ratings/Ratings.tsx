@@ -25,7 +25,7 @@ const Ratings: React.FC<{
     const { isFetching: isLoading, data: ratings, isError } = useRating(imdbId);
 
     return isLoading ? (
-        <p className="text-xl" data-testid="rating-loading">
+        <p className="h-[46px] text-xl" data-testid="rating-loading">
             Rating...
         </p>
     ) : isError ? (
