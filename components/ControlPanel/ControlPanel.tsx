@@ -16,7 +16,7 @@ const FiltersControls: React.FC<FiltersControlsProps> = ({
     setFilters,
 }) => {
     return (
-        <div className="lg:justify-center xl:flex-row flex flex-col gap-8">
+        <div className="flex flex-col gap-8 lg:justify-center xl:flex-row">
             <RadioGroup title="How old should it be?">
                 <Radio
                     label="Any"
@@ -142,21 +142,21 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
             className={`${
                 isFiltersOpen
                     ? 'translate-y-0'
-                    : 'md:translate-y-[calc(100%-68px-2rem)] translate-y-[calc(100%-104px-2rem)]'
-            } md:py-5 fixed bottom-0 left-0 z-30 w-full bg-slate-950 pb-5 transition-transform`}
+                    : 'translate-y-[calc(100%-104px-2rem)] md:translate-y-[calc(100%-68px-2rem)]'
+            } fixed bottom-0 left-0 z-30 w-full bg-slate-950 pb-5 transition-transform md:py-5`}
         >
             <div className="container mx-auto max-w-[1200px] px-5">
-                <div className="md:flex-row md:gap-3 mb-3 flex flex-col items-center justify-center">
+                <div className="mb-3 flex flex-col items-center justify-center md:flex-row md:gap-3">
                     <Button
                         onClick={() => handleButtonClick(filters)}
                         text="Try again!"
                         pending={isLoading}
-                        className="md:w-auto w-full"
+                        className="w-full md:w-auto"
                     ></Button>
                     <button
                         type="button"
                         onClick={() => setIsFiltersOpen(!isFiltersOpen)}
-                        className="md:order-1 md:w-auto -order-1 w-full appearance-none py-4 text-white underline hover:no-underline"
+                        className="-order-1 w-full appearance-none py-4 text-white underline hover:no-underline md:order-1 md:w-[83px]"
                     >
                         {isFiltersOpen ? 'Hide filters' : 'Show filters'}
                     </button>
