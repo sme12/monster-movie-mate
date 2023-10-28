@@ -18,7 +18,7 @@ const Radio: React.FC<RadioProps> = ({ label, value, checked, onChange }) => {
         >
             <input
                 type="radio"
-                className="appearance-none"
+                className="sr-only appearance-none"
                 value={value}
                 checked={checked}
                 onChange={() => onChange(value)}
