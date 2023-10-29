@@ -41,7 +41,7 @@ function Main() {
                         ? 'Let me think...'
                         : 'My recommendation for you'}
                 </span>
-                <div className="absolute right-0 top-0 px-5 py-5">
+                <div className="absolute right-0 top-0">
                     <GitHubLink />
                 </div>
             </header>

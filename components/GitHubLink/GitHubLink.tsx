@@ -3,7 +3,7 @@ const GitHubLink: React.FC = () => {
         <a
             href="https://github.com/sme12/monster-movie-mate"
             target="_blank"
-            className="hidden translate-x-[calc(100%-32px)] items-center justify-center gap-5 transition-transform hover:translate-x-0 hover:underline lg:inline-flex"
+            className="hidden translate-x-[calc(100%-32px-20px)] items-center justify-center gap-5 py-5 pr-5 transition-transform hover:translate-x-0 hover:underline lg:inline-flex"
         >
             <picture className="h-[32px] w-[32px]">
                 <img
