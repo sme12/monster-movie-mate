@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     title: 'Monster Movie Mate',
     description: 'Horror movie advisor',
     openGraph: {
-        images: 'https://monster-movie-mate.vercel.app/og.jpg',
+        images: 'https://monster-movie-mate.vercel.app/og.png',
     },
 };
 
@@ -29,7 +29,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={`${petrona.className} ${creepster.variable}`}>
-                <div className="md:h-screen grid grid-rows-[min-content]">
+                <div className="grid grid-rows-[min-content] md:h-screen">
                     {children}
                     <Analytics />
                 </div>

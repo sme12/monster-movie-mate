@@ -3,7 +3,7 @@
     Horror movie advisor. A project using TMDB, OMDb, and fabulous animations from LottieFiles. Also, special thanks to ChatGPT for the name.
   </p>
   <p align="center">
-    <a href="https://monster-movie-mate.vercel.app/"><img src="/public/og.jpg" width="300" height="150" ></a>
+    <a href="https://monster-movie-mate.vercel.app/"><img src="logo.png" width="150" height="150"></a>
   </p>
   <p align="center">
     <a href="https://monster-movie-mate.vercel.app/">View Demo</a>
@@ -14,7 +14,7 @@
 
 ## About The Project
 
-![](screenshot.jpg)
+![](public/og.png)
 
 Get ready for a spooktacular Halloween movie night with our horror movie advisor! 🧟‍♂️
 
