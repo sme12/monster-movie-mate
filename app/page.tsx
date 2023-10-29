@@ -8,6 +8,7 @@ import { Filters, Rate, Period } from '@/models/FiltersModel';
 import ControlPanel from '@/components/ControlPanel/ControlPanel';
 import useMovie from '@/hooks/useMovie';
 import useUpdateQuery from '@/hooks/useUpdateQuery';
+import GitHubLink from '@/components/GitHubLink/GitHubLink';
 
 const queryClient = new QueryClient();
 
@@ -32,10 +33,17 @@ function Main() {
     return (
         <>
             <header
-                className="font-creepster flex items-center justify-center bg-slate-950 px-1 py-5 text-center text-4xl font-bold uppercase tracking-wider text-orange-600"
+                className="relative flex items-center justify-center overflow-hidden bg-slate-950 px-1 py-5"
                 data-testid="header"
             >
-                {isFetching ? 'Let me think...' : 'My recommendation for you'}
+                <span className="text-center font-creepster text-4xl font-bold uppercase tracking-wider text-orange-600">
+                    {isFetching
+                        ? 'Let me think...'
+                        : 'My recommendation for you'}
+                </span>
+                <div className="absolute right-0 top-0 px-5 py-5">
+                    <GitHubLink />
+                </div>
             </header>
             <main className="relative h-full">
                 <Movie movie={data} isLoading={isFetching} isError={isError} />
