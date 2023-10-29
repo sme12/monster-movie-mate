@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Radio from '../Radio/Radio';
 import Button from '@/components/Button/Button';
 import RadioGroup from '@/components/RadioGroup/RadioGroup';
